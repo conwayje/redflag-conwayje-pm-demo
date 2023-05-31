@@ -1,0 +1,20 @@
+h1 Employees
+
+table.table.table-hover
+  thead
+    tr
+      th scope="col" ID
+      th scope="col" Name
+      th scope="col" Email
+      th scope="col" Title
+      th scope="col" Work Focus
+  tbody
+    - @employees.each do |employee|
+      tr
+        th scope="row" = employee.id
+        td = link_to employee.name || "[unnamed employee]", employee
+        td = employee.email
+        td = employee.title
+        td = employee.work_focus
+
+= link_to "New employee", new_employee_path, class: "btn btn-outline-dark"

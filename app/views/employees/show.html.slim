@@ -1,0 +1,27 @@
+== render @employee
+
+h1 Tasks
+
+table.table.table-hover
+  thead
+    tr
+      th scope="col" ID
+      th scope="col" Title
+      th scope="col" Project
+      th scope="col" Description
+      th scope="col" Due Date
+      th scope="col" Status
+  tbody
+    - @employee.tasks.each do |task|
+      tr
+        th scope="row" = task.id
+        td = link_to task.title, task
+        td = link_to task.project.title, task.project
+        td = task.description
+        td = task.due_date
+        td = task.status&.humanize
+
+div
+  => link_to "Edit this employee", edit_employee_path(@employee)
+  '|
+  =< link_to "Back to employees", employees_path

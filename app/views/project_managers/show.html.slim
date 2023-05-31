@@ -1,0 +1,8 @@
+== render @project_manager
+
+div
+  => link_to "Edit this project manager", edit_project_manager_path(@project_manager)
+  '|
+  =< link_to "Back to project managers", project_managers_path
+
+  p = button_to "Destroy this project manager", @project_manager, method: :delete, class: "btn btn-outline-danger"

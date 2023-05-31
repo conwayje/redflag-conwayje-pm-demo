@@ -1,0 +1,10 @@
+h1 Editing project manager
+
+== render "form", project_manager: @project_manager
+
+br
+
+div
+  => link_to "Show this project manager", @project_manager
+  '|
+  =< link_to "Back to project managers", project_managers_path

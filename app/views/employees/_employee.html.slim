@@ -1,0 +1,21 @@
+div id="#{dom_id employee}"
+  .row
+    .col-sm-4.info-card
+      p.lead
+        b Employee ID ##{employee.id}
+    .col-sm-4.info-card
+      p.lead
+        b Name:
+      p.lead = employee.name
+    .col-sm-4.info-card
+      p.lead
+        b Email:
+      p.lead = employee.email
+    .col-sm-4.info-card
+      p.lead
+        b Title:
+      p.lead = employee.title
+    .col-sm-4.info-card
+      p.lead
+        b Work focus:
+      p.lead = employee.work_focus&.humanize

@@ -1,0 +1,50 @@
+= form_with(model: @task) do |form|
+  - if @task.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
+      ul
+        - @task.errors.each do |error|
+          li = error.full_message
+  .row
+    .col-md-6
+      .form-group
+        = form.label :title
+        = form.text_field :title, class: "form-control"
+
+    .col-md-6
+      .form-group
+        = form.label :description
+        = form.text_field :description, class: "form-control"
+
+    .col-md-6
+      .form-group
+        = form.label :work_focus
+        = select_tag(:work_focus, options_for_select(@work_focus_options), class: "form-select", name: "task[work_focus]")
+
+    .col-md-6
+      .form-group
+        = form.label :due_date
+        = form.datetime_field :due_date, class: "form-control"
+
+    .col-md-6
+      .form-group
+        = form.label :status
+        = select_tag(:status, options_for_select(@status_options, @task.status), class: "form-select", name: "task[status]")
+
+    .col-md-6
+      .form-group
+        = form.label :project
+        = select_tag(:project_id, options_for_select(@project_options, @task.project_id), class: "form-select", name: "task[project_id]")
+
+    .col-md-6
+      .form-group
+        = form.label :parent_task_id
+        = select_tag(:parent_task_id, options_for_select(@valid_parent_options, @task.parent_task_id), class: "form-select", name: "task[parent_task_id]")
+
+    .col-md-6
+      .form-group
+        = form.label :assigned_employee_ids
+        = select_tag(:assigned_employee_ids, options_for_select(@assigned_employee_ids_options, @assigned_employee_ids), class: "form-select", name: "task[assigned_employee_ids][]", multiple: true)
+
+
+  = form.submit class: "btn btn-outline-dark"

@@ -1,0 +1,14 @@
+h1 Project Managers
+
+table.table.table-hover
+  thead
+    tr
+      th scope="col" ID
+      th scope="col" Name
+      th scope="col" Email
+  tbody
+    - @project_managers.each do |project_manager|
+      tr
+        th scope="row" = project_manager.id
+        td = link_to project_manager.name, project_manager
+        td = project_manager.email

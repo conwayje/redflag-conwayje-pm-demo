@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+    title
+      | PM Demo - Jeff Conway
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  body
+    header
+      nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
+        a.navbar-brand[href="/"]
+          | Project Management
+        button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"]
+          span.navbar-toggler-icon
+        #navbarCollapse.collapse.navbar-collapse
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a.nav-link[href="#{projects_path}"]
+                | Projects
+            li.nav-item
+              a.nav-link[href="#{tasks_path}"]
+                | Tasks
+            li.nav-item
+              a.nav-link[href="#{employees_path}"]
+                | Employees
+            li.nav-item
+              a.nav-link[href="#{project_managers_path}"]
+                | Project Managers
+    main.container[role="main"]
+      - if flash[:alert]
+        .alert
+          p style="color: red" = flash[:alert]
+      - if flash[:notice]
+        .notice
+          p style="color: green" = flash[:notice]
+
+      = yield
+
+    footer.footer
+      .container
+        span.text-muted
+          p Sample assignment by Jeff Conway | Current project manager: #{current_project_manager.present? ? (current_project_manager.name || "[unnamed project manager]") : "None"} | Current Employee: #{current_employee.present? ? (current_employee.name || "[unnamed employee]") : "None"}
+
+

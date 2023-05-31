@@ -1,0 +1,25 @@
+h1 Projects
+
+table.table.table-hover
+  thead
+    tr
+      th scope="col" ID
+      th scope="col" Title
+      th scope="col" Description
+      th scope="col" Due Date
+      th scope="col" Tasks
+  tbody
+    - @projects.each do |project|
+      tr
+        th scope="row" = project.id
+        td = link_to project.title, project
+        td = project.description
+        td = project.due_date
+        td
+          ul
+            - project.tasks.each do |task|
+              li
+                = link_to task.title, task
+                |  (#{task.status&.humanize})
+
+= link_to "New project", new_project_path, class: "btn btn-outline-dark"

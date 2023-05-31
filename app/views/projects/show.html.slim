@@ -1,0 +1,28 @@
+== render @project
+
+p.lead
+  b Tasks
+
+table.table.table-hover
+  thead
+    tr
+      th scope="col" ID
+      th scope="col" Title
+      th scope="col" Description
+      th scope="col" Due Date
+      th scope="col" Status
+  tbody
+    - @project.tasks.each do |task|
+      tr
+        th scope="row" = task.id
+        td = link_to task.title, task
+        td = task.description
+        td = task.due_date
+        td = task.status&.humanize
+
+div
+  => link_to "Edit this project", edit_project_path(@project)
+  '|
+  =< link_to "Back to projects", projects_path
+
+  p = button_to "Destroy this project", @project, method: :delete, class: "btn btn-outline-danger"

@@ -1,0 +1,18 @@
+div id="#{dom_id project}"
+  .row
+    .col-sm-3.info-card
+      p.lead
+        b Project ID ##{project.id}
+
+    .col-sm-3.info-card
+      p.lead
+        b Title:
+      p.lead = project.title
+    .col-sm-3.info-card
+      p.lead
+        b Description:
+      p.lead = project.description
+    .col-sm-3.info-card
+      p.lead
+        b Due date:
+      p.lead = project.due_date
