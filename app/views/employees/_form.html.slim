@@ -1,0 +1,36 @@
+= form_with(model: @employee) do |form|
+  - if @employee.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@employee.errors.count, "error")} prohibited this employee from being saved:"
+      ul
+        - @employee.errors.each do |error|
+          li = error.full_message
+
+  .row
+    .col-md-4
+      .form-group
+        = form.label :email
+        = form.text_field :email, class: "form-control"
+
+      - if action_name == "new"
+        .form-group
+          = form.label :password
+          = form.password_field :password, class: "form-control"
+
+        .form-group
+          = form.label :password_confirmation
+          = form.password_field :password_confirmation, class: "form-control"
+
+      .form-group
+        = form.label :name
+        = form.text_field :name, class: "form-control"
+
+      .form-group
+        = form.label :title
+        = form.text_field :title, class: "form-control"
+
+      .form-group
+        = form.label :work_focus
+        = select_tag(:work_focus, options_for_select(@employee.work_focus_options, @employee.work_focus), class: "form-select", name: "employee[work_focus]")
+
+      = form.submit class: "btn btn-outline-dark"

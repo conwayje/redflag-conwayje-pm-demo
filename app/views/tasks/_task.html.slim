@@ -1,0 +1,48 @@
+div id="#{dom_id task}"
+  .row
+    .col-sm-3.info-card
+      p.lead
+        b Task ID ##{task.id}
+    .col-sm-3.info-card
+      p.lead
+        b Project:
+      p.lead = link_to task.project.title, task.project
+    .col-sm-3.info-card
+      p.lead
+        b Title:
+      p.lead = task.title
+    .col-sm-3.info-card
+      p.lead
+        b Description:
+      p.lead = task.description
+    .col-sm-3.info-card
+      p.lead
+        b Work focus:
+      p.lead = task.work_focus&.humanize
+    .col-sm-3.info-card
+      p.lead
+        b Due date:
+      p.lead = task.due_date
+    .col-sm-3.info-card
+      p.lead
+        b Status:
+      p.lead = task.status&.humanize
+    .col-sm-3.info-card
+      p.lead
+        b Project manager:
+      p.lead = link_to task.project_manager&.name, task.project_manager
+    .col-sm-3.info-card
+      p.lead
+        b Parent task:
+      - if task.parent_task
+        p.lead = link_to task.parent_task.title, task.parent_task
+    .col-sm-3.info-card
+      p.lead
+        b Assigned employees:
+      - @task.employees.each do |e|
+        p.lead = e.name
+    .col-sm-3.info-card
+      p.lead
+        b Subtasks:
+      - @task.subtasks.each do |s|
+        p.lead = s.title

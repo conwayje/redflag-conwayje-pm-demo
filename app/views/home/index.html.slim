@@ -1,0 +1,14 @@
+h1.mt-5
+  | Project Management Demo App
+p.lead
+  | View links above for each key resource.
+
+p.lead
+  | Intro actions:
+  ul
+  - if !@employee
+    li #{link_to "Sign in", new_employee_session_path} as an employee
+  - if !@project_manager
+    li #{link_to "Sign in", new_project_manager_session_path} as a project manager
+  - if @employee or @project_manager
+    li = link_to "Sign out all accounts", destroy_employee_session_path, data: { turbo_method: "delete" }

@@ -1,0 +1,15 @@
+= form_with(model: @project_manager) do |form|
+  - if @project_manager.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@project_manager.errors.count, "error")} prohibited this project_manager from being saved:"
+      ul
+        - @project_manager.errors.each do |error|
+          li = error.full_message
+
+  .row
+    .col-md-4
+      .form-group
+        = form.label :name
+        = form.text_field :name, class: "form-control"
+
+      = form.submit class: "btn btn-outline-dark"
